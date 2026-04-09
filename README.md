@@ -252,3 +252,4 @@ Produces a lower sound.
 
 noTone(buzzer);
 Stops the buzzer sound.
+
