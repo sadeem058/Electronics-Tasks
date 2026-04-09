@@ -253,3 +253,95 @@ Produces a lower sound.
 noTone(buzzer);
 Stops the buzzer sound.
 
+![t2](https://github.com/sadeem058/Electronics-Tasks/blob/main/Screenshot%20(74).png)
+
+# Solve Q1,2:
+
+This project is built using an Arduino Uno to control two motors and display the status on an LCD.
+![c3](https://github.com/sadeem058/Electronics-Tasks/blob/main/components3.png)
+
+## Components
+Components used:
+Arduino Uno
+L293D Motor Driver
+2 DC Motors
+LCD I2C (16x2)
+9V Battery
+Jumper wires
+
+## Wiring & Pin Mapping
+Arduino Pin
+L293D IN1    8
+L293D IN2    9
+L293D IN3    10
+L293D IN4    11
+LCD SDA      A4
+LCD SCL      A5
+VCC          5V
+GND          GND
+
+## How It Works
+This project controls the movement of two motors in a specific sequence while displaying the direction on the LCD.
+Depending on the code, the motors perform these movements:
+First, both motors move forward for 30 seconds.
+![f](https://github.com/sadeem058/Electronics-Tasks/blob/main/forword.png)
+Then, both motors move backward for 60 seconds.
+![b](https://github.com/sadeem058/Electronics-Tasks/blob/main/back.png)
+After that, the robot moves right and left repeatedly for 1 minute.
+Finally, all motors stop.
+The LCD shows the current command (Forward, Backward, Right, Left, or Stop) during each step.
+
+## Code
+
+![1](https://github.com/sadeem058/Electronics-Tasks/blob/main/code3-1.png)
+![2](https://github.com/sadeem058/Electronics-Tasks/blob/main/code3-2.png)
+![3](https://github.com/sadeem058/Electronics-Tasks/blob/main/code3-3.png)
+![4](https://github.com/sadeem058/Electronics-Tasks/blob/main/code3-4.png)
+![5](https://github.com/sadeem058/Electronics-Tasks/blob/main/code3-5.png)
+
+## Explanation
+
+#include <Wire.h>
+Library for I2C communication.
+
+#include <LiquidCrystal_I2C.h>
+Library to control the LCD display.
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+Defines the LCD address and size.
+
+int IN1 = 8;
+Defines the pin for motor control.
+
+lcd.init();
+Initializes the LCD screen.
+
+lcd.backlight();
+Turns on the screen light.
+
+forward();
+Function to move both motors forward.
+
+backward();
+Function to move both motors backward.
+
+stopMotors();
+Function to turn off all motor signals.
+
+lcd.clear();
+Clears the screen to write a new message.
+
+lcd.print("Forward");
+Displays the word "Forward" on the screen.
+
+delay(30000);
+Wait for 30 seconds while moving.
+
+unsigned long startTime = millis();
+Starts a timer to track the 1-minute movement.
+
+while (millis() - startTime < 60000)
+A loop that repeats movements for 60 seconds.
+
+while (1);
+Ends the program so it doesn't repeat.
