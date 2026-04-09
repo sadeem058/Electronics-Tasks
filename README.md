@@ -137,9 +137,10 @@ Prevents the buzzer from repeating again.
 
 # Solve Q2:
 
-## Components
-
 This project is built using an Arduino Uno to detect distance and give visual and sound alerts.
+![c2](https://github.com/sadeem058/Electronics-Tasks/blob/main/componint2.png)
+
+## Components
 
 Components used:
 
@@ -170,9 +171,11 @@ This project uses an ultrasonic sensor to measure the distance between the senso
 Depending on the distance, different LEDs turn on:
 
 If the object is within 30 cm, the green LED turns on.
+![g](https://github.com/sadeem058/Electronics-Tasks/blob/main/green.png)
 If the object is within 20 cm, the yellow LED turns on.
+![y](https://github.com/sadeem058/Electronics-Tasks/blob/main/yellow.png)
 If the object is within 10 cm, the red LED turns on.
-
+![r](https://github.com/sadeem058/Electronics-Tasks/blob/main/red.png)
 The buzzer also gives different alerts depending on the distance:
 
 When the object is very close (≤10 cm), the buzzer makes a fast high-pitch sound.
@@ -182,6 +185,8 @@ When the object is farther than 20 cm, the buzzer stops.
 This helps simulate a simple distance warning system, similar to parking sensors in cars.
 
 ## Code
+![1](https://github.com/sadeem058/Electronics-Tasks/blob/main/code2-1.png)
+![2](https://github.com/sadeem058/Electronics-Tasks/blob/main/code2-2.png)
 
 ## Explanation
 
