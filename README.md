@@ -447,3 +447,133 @@ A loop that repeats movements for 60 seconds.
 
 while (1);
 Ends the program so it doesn't repeat.
+
+# Solve Q2:
+
+![com1](https://github.com/sadeem058/Electronics-Tasks/blob/main/components5-1.png)
+
+## Components
+
+ESP32
+Stepper Motor
+A4988 Stepper Driver
+Jumper Wires
+
+## Wiring & Pin Mapping
+
+![comp2](https://github.com/sadeem058/Electronics-Tasks/blob/main/components5-2.png)
+
+A4988 Driver → ESP32:
+STEP → GPIO 18
+DIR → GPIO 19
+
+Power Connections:
+VMOT → External motor power (e.g., 9V–12V)
+GND (driver) → GND (ESP32)
+VDD → 3.3V (ESP32)
+
+Motor Connections:
+The 4 wires of the stepper motor → connected to A4988 outputs (1A, 1B, 2A, 2B)
+
+Note:
+Always connect GND of ESP32 and driver together.
+
+## How It Works
+
+In this project:
+
+The ESP32 controls a stepper motor using the A4988 driver.
+The motor performs:
+One full rotation clockwise
+![2](https://github.com/sadeem058/Electronics-Tasks/blob/main/5-3.png)
+One full rotation counterclockwise
+![1](https://github.com/sadeem058/Electronics-Tasks/blob/main/5-2.png)
+Gradual acceleration
+Constant high-speed rotation for 2 seconds
+Gradual deceleration
+After completing all actions, the program stops.
+![3](https://github.com/sadeem058/Electronics-Tasks/blob/main/5-1.png)
+
+## Code 
+
+![1](https://github.com/sadeem058/Electronics-Tasks/blob/main/code5.png)
+
+## Explanation
+
+#define STEP_PIN 18
+#define DIR_PIN 19
+Defines the pins used to control the stepper driver:
+
+STEP → controls stepping
+DIR → controls direction
+#define STEPS_PER_REV 200
+Number of steps for one full revolution (typical stepper motor).
+
+void stepMotor(int steps, int delayTime) {
+Function to rotate the motor a specific number of steps.
+
+for (int i = 0; i < steps; i++) {
+Loop for each step.
+
+digitalWrite(STEP_PIN, HIGH);
+delayMicroseconds(delayTime);
+digitalWrite(STEP_PIN, LOW);
+delayMicroseconds(delayTime);
+Creates a pulse signal:
+
+HIGH → step forward
+LOW → complete the step
+delay controls speed
+void setup() {
+Runs once at startup.
+
+pinMode(STEP_PIN, OUTPUT);
+pinMode(DIR_PIN, OUTPUT);
+Sets control pins as outputs.
+
+void loop() {
+Main loop of the program.
+
+1. Full Rotation Clockwise
+
+digitalWrite(DIR_PIN, HIGH);
+stepMotor(STEPS_PER_REV, 1000);
+Sets direction to clockwise
+Moves one full revolution
+delay(500);
+Short pause.
+
+2. Full Rotation Counterclockwise
+
+digitalWrite(DIR_PIN, LOW);
+stepMotor(STEPS_PER_REV, 1000);
+Reverses direction
+Moves one full revolution
+delay(1000);
+Pause before next stage.
+
+3. Gradual Acceleration
+digitalWrite(DIR_PIN, HIGH);
+Sets direction again.
+
+for (int d = 2000; d > 500; d -= 100) {
+  stepMotor(20, d);
+}
+Starts slow (delay = 2000 µs)
+Gradually increases speed (delay decreases)
+
+4. Constant High Speed (2 seconds)
+
+unsigned long startTime = millis();
+while (millis() - startTime < 2000) {
+  stepMotor(20, 500);
+}
+Runs motor at maximum speed for 2 seconds
+
+5. Gradual Deceleration
+for (int d = 500; d < 2000; d += 100) {
+  stepMotor(20, d);
+}
+Slowly reduces speed until it stops
+while (true);
+Stops the program completely.
