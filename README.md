@@ -256,6 +256,9 @@ Stops the buzzer sound.
 ![t2](https://github.com/sadeem058/Electronics-Tasks/blob/main/Screenshot%20(74).png)
 
 # Solve Q1,2:
+![1](https://github.com/sadeem058/Electronics-Tasks/blob/main/WhatsApp%20Image%202026-04-16%20at%201.58.21%20AM.jpeg)
+![2](https://github.com/sadeem058/Electronics-Tasks/blob/main/WhatsApp%20Image%202026-04-16%20at%201.58.22%20AM%20(1).jpeg)
+![3](https://github.com/sadeem058/Electronics-Tasks/blob/main/WhatsApp%20Image%202026-04-16%20at%201.58.22%20AM.jpeg)
 
 This project is built using an Arduino Uno to control two motors and display the status on an LCD.
 ![c3](https://github.com/sadeem058/Electronics-Tasks/blob/main/components3.png)
