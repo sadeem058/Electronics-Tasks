@@ -341,6 +341,108 @@ unsigned long startTime = millis();
 Starts a timer to track the 1-minute movement.
 
 while (millis() - startTime < 60000)
+
+
+# Components
+
+Arduino Uno
+5 × Servo Motors (SG90)
+Breadboard
+Jumper Wires
+🔌 Wiring & Pin Mapping
+Power Connections:
+All servos:
+Red (VCC) → 5V on Arduino (via breadboard)
+Brown/Black (GND) → GND on Arduino
+Signal Connections:
+Servo 1 → Pin 3
+Servo 2 → Pin 5
+Servo 3 → Pin 6
+Servo 4 → Pin 9
+Servo 5 → Pin 10
+⚙️ How It Works
+
+In this project:
+
+All 5 servo motors move together using a sweeping motion.
+They rotate from 0° to 180° and back.
+This motion runs for 2 seconds only.
+After that:
+All servos move to 90° (center position).
+The program stops completely.
+💻 Code Explanation (Line by Line)
+#include <Servo.h>
+
+Includes the Servo library to control servo motors.
+
+Servo s1, s2, s3, s4, s5;
+
+Creates 5 servo objects.
+
+int pos = 0;
+
+Variable to store the servo position (angle).
+
+unsigned long startTime;
+
+Stores the start time of the program.
+
+void setup() {
+
+Runs once when the Arduino starts.
+
+  s1.attach(3);
+  s2.attach(5);
+  s3.attach(6);
+  s4.attach(9);
+  s5.attach(10);
+
+Attaches each servo to its corresponding pin.
+
+  startTime = millis();
+
+Records the start time in milliseconds.
+
+void loop() {
+
+Runs continuously after setup.
+
+while (millis() - startTime < 2000) {
+
+Runs the sweeping motion for 2 seconds (2000 ms).
+
+for (pos = 0; pos <= 180; pos++) {
+
+Moves the servos from 0° to 180°.
+
+  s1.write(pos);
+  s2.write(pos);
+  s3.write(pos);
+  s4.write(pos);
+  s5.write(pos);
+
+Sends the same angle to all servos (they move together).
+
+delay(15);
+
+Adds a small delay for smooth movement.
+
+for (pos = 180; pos >= 0; pos--) {
+
+Moves the servos back from 180° to 0°.
+
+s1.write(90);
+s2.write(90);
+s3.write(90);
+s4.write(90);
+s5.write(90);
+
+After 2 seconds:
+
+Sets all servos to the center position (90°).
+while(true);
+
+Stops the program completely (no further execution).
 A loop that repeats movements for 60 seconds.
 
 while (1);
