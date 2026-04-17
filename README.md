@@ -256,9 +256,91 @@ Stops the buzzer sound.
 ![t2](https://github.com/sadeem058/Electronics-Tasks/blob/main/Screenshot%20(74).png)
 
 # Solve Q1,2:
+
 ![1](https://github.com/sadeem058/Electronics-Tasks/blob/main/WhatsApp%20Image%202026-04-16%20at%201.58.21%20AM.jpeg)
 ![2](https://github.com/sadeem058/Electronics-Tasks/blob/main/WhatsApp%20Image%202026-04-16%20at%201.58.22%20AM%20(1).jpeg)
 ![3](https://github.com/sadeem058/Electronics-Tasks/blob/main/WhatsApp%20Image%202026-04-16%20at%201.58.22%20AM.jpeg)
+
+## Components
+Arduino Uno
+2x Stepper Motors (28BYJ-48)
+2x Driver Modules (ULN2003 or similar)
+Jumper Wires
+Breadboard
+Power Supply
+
+## Wiring & Pin Mapping
+🔹 Stepper Motor 1
+IN1 → Pin 8
+IN2 → Pin 9
+IN3 → Pin 10
+IN4 → Pin 11
+🔹 Stepper Motor 2
+IN1 → Pin 4
+IN2 → Pin 5
+IN3 → Pin 6
+IN4 → Pin 7
+
+ ## How It Works
+
+This project controls two stepper motors using the AccelStepper library.
+
+Each motor moves to a specific number of steps
+Once it reaches the target position, it reverses direction
+The motion continues back and forth continuously
+Both motors run independently but at the same time
+
+## code
+
+
+
+## Explanation
+
+Library
+#include <AccelStepper.h>
+This library provides advanced control for stepper motors (speed, acceleration, smooth motion).
+
+Step Modes
+#define FULLSTEP 4
+#define HALFSTEP 8
+FULLSTEP → faster but less smooth
+HALFSTEP → smoother motion (recommended)
+Pin Definitions
+#define motorPin1 8
+
+Defines the Arduino pins connected to the driver inputs.
+
+Stepper Objects
+AccelStepper stepper1(HALFSTEP, ...);
+
+Creates a stepper motor object.
+
+The pin order is important — wrong order = wrong rotation
+
+setup()
+stepper1.setMaxSpeed(1000.0);
+Sets maximum speed
+
+stepper1.setAcceleration(50.0);
+Sets acceleration for smooth movement
+
+stepper1.moveTo(2048);
+Moves the motor to a target position
+2048 steps ≈ one full rotation (for 28BYJ-48)
+
+loop()
+if (stepper1.distanceToGo() == 0)
+
+Checks if the motor reached its target
+
+stepper1.moveTo(-stepper1.currentPosition());
+Reverses direction
+
+Running the Motors
+stepper1.run();
+
+Continuously updates motor movement (must be called repeatedly)
+
 
 This project is built using an Arduino Uno to control two motors and display the status on an LCD.
 ![c3](https://github.com/sadeem058/Electronics-Tasks/blob/main/components3.png)
