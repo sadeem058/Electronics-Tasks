@@ -292,7 +292,7 @@ Both motors run independently but at the same time
 
 ## code
 
-
+![1](https://github.com/sadeem058/Electronics-Tasks/blob/main/code2.png)
 
 ## Explanation
 
